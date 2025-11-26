@@ -1,0 +1,125 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4; /* Сірий фон для сторінки */
+}
+
+/* Основний контейнер, який тримає весь макет */
+.container {
+    width: 800px; /* Фіксована ширина для демонстрації пропорцій */
+    height: 600px; /* Фіксована висота для демонстрації */
+    margin: 0 auto; /* Центрування на сторінці */
+    border: 3px solid #333;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+    /* Активація CSS Grid */
+    display: grid;
+    /* Визначаємо 3 стовпці: 25% (2) | 50% (3, 4, 6) | 25% (5) */
+    /* Використовуємо 'fr' для пропорцій: 1fr | 2fr | 1fr */
+    grid-template-columns: 1fr 2fr 1fr;
+    /* Визначаємо 4 рядки:
+       - 1: За контентом (auto)
+       - 3: За контентом (auto)
+       - 4: Займає простір, що залишився (1fr)
+       - 6/7: За контентом (auto) */
+    grid-template-rows: auto auto 1fr auto;
+    /* Визначаємо імена областей для зручного розміщення блоків */
+    grid-template-areas:
+        "header header header" /* Блок 1 займає весь верхній рядок */
+        "left-side top-center right-side" /* Блоки 2, 3, 5 */
+        "left-side content right-side" /* Блоки 2, 4, 5 */
+        "left-side bottom-center right-side" /* Блоки 2, 6, 5 */
+        "footer footer footer"; /* Блок 7 займає весь нижній рядок */
+}
+
+/* Загальні стилі для всіх блоків */
+.block {
+    padding: 10px;
+    border: 1px solid #ccc; /* Тонка межа між блоками */
+    box-sizing: border-box; /* Запобігає збільшенню розміру блоку через padding */
+    overflow: auto; /* Додає смугу прокрутки, якщо контенту забагато (Завдання 7) */
+}
+
+/* Кольори відповідно до Варіанта 5 */
+.block-1, .block-7 {
+    background-color: #c0d9e7;
+}
+/* Блакитний */
+.block-2, .block-5 {
+    background-color: #ffdab9;
+}
+/* Світло-помаранчевий (персиковий) */
+.block-3, .block-6 {
+    background-color: #e0f8e0;
+}
+/* Світло-зелений */
+.block-4 {
+    background-color: #ffffff;
+}
+/* Білий */
+
+/* Прив'язка блоків до областей Grid */
+.block-1 {
+    grid-area: header;
+}
+
+.block-2 {
+    grid-area: left-side;
+    /* Блок 2 охоплює 3, 4, 6 по вертикалі */
+    grid-row: 2 / span 4;
+}
+
+.block-3 {
+    grid-area: top-center;
+}
+
+.block-4 {
+    grid-area: content;
+}
+
+.block-5 {
+    grid-area: right-side;
+    /* Блок 5 охоплює 3, 4, 6 по вертикалі */
+    grid-row: 2 / span 4;
+}
+
+.block-6 {
+    grid-area: bottom-center;
+}
+
+.block-7 {
+    grid-area: footer;
+}
+
+/* Стилі для заголовків X та Y */
+h1 {
+    font-size: 1.5em;
+    text-align: left;
+    margin: 0;
+}
+
+h2 {
+    font-size: 1.2em;
+    text-align: right;
+    margin: 0;
+}
+
+/* Стилі для меню */
+.main-menu ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.main-menu a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding: 5px;
+    background: #f0f0f0;
+    margin-bottom: 2px;
+}
+
+    .main-menu a:hover {
+        background: #ccc;
+    }
