@@ -1,4 +1,9 @@
-/* styles.css - Кондитерська PASTRIE - ЕЛЕГАНТНИЙ СТИЛЬ (Без заголовка у Блоці 1) */
+/* styles.css - Кондитерська PASTRIE - ФІНАЛЬНИЙ ЧИСТИЙ ДИЗАЙН */
+
+/* Глобальне налаштування для усунення скролбара */
+* {
+    box-sizing: border-box;
+}
 
 /* Визначаємо колірну палітру */
 :root {
@@ -18,13 +23,13 @@ html, body {
 }
 
 body {
-    font-family: 'Montserrat', sans-serif; /* Основний текст */
+    font-family: 'Montserrat', sans-serif;
     background-color: var(--color-white);
     color: var(--color-brown);
 }
 
 h1, h2, h3 {
-    font-family: 'Playfair Display', serif; /* Елегантні заголовки */
+    font-family: 'Playfair Display', serif;
     color: var(--color-brown);
     margin: 0;
 }
@@ -35,7 +40,7 @@ h1, h2, h3 {
     min-height: 100vh;
     margin: 0;
     box-shadow: none;
-    border: 5px solid var(--color-gold); /* Золота рамка */
+    border: none; /* ВИДАЛЕНО ЗОВНІШНЮ ОРАНТОВКУ */
 
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
@@ -51,8 +56,7 @@ h1, h2, h3 {
 /* 3. Стилі та кольори блоків */
 .block {
     padding: 15px;
-    border: 1px solid rgba(212, 175, 55, 0.4); /* Напівпрозорий золотий поділ */
-    box-sizing: border-box;
+    border: none; /* ВИДАЛЕНО ВНУТРІШНІ ЛІНІЇ ПОДІЛУ */
     overflow: auto;
 }
 
@@ -62,9 +66,9 @@ h1, h2, h3 {
     color: var(--color-white);
 }
 
-    /* Стилі для h2 (Блок 7) залишаються */
+    /* Стилі для h2 (Блок 7) */
     .block-7 h2 {
-        color: var(--color-gold); /* Золотий колір для гасла */
+        color: var(--color-gold);
         text-align: right;
     }
 
@@ -79,8 +83,9 @@ h1, h2, h3 {
 }
 
 /* 4. Прив'язка блоків Grid */
-.block-1 {
-    grid-area: header;
+.block-1 h1 {
+    color: var(--color-gold); /* Золотий колір для назви */
+    text-align: left;
 }
 
 .block-2 {
@@ -128,7 +133,7 @@ h1, h2, h3 {
     display: block;
     padding: 8px;
     background: var(--color-white);
-    border-bottom: 1px solid rgba(212, 175, 55, 0.5);
+    border-bottom: 1px solid var(--color-brown); /* Тонка коричнева лінія */
     transition: background-color 0.3s;
 }
 
