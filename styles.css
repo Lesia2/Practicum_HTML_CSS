@@ -1,22 +1,23 @@
-/* styles.css - ФІНАЛЬНИЙ ДИЗАЙН З ВИПРАВЛЕННЯМИ МЕЖІВ */
+/* styles.css - ФІНАЛЬНА ВЕРСІЯ: ВИКОНАННЯ ВИМОГИ ПЕРЕКРИТТЯ БЛОКУ 3 */
 
 * {
     box-sizing: border-box;
 }
 
+/* Визначаємо колірну палітру */
 :root {
-    --color-cream: #F5F5DC;
-    --color-brown: #5D4037;
-    --color-taupe: #BFA89E;
-    --color-gold: #D4AF37;
-    --color-white: #FFFFFF;
+    --color-cream: #F5F5DC; /* Кремовий (Блоки 3, 6) */
+    --color-brown: #5D4037; /* Коричневий (Темний акцент, межі, текст) */
+    --color-taupe: #BFA89E; /* Сіро-коричневий (Блоки 2 і 5) */
+    --color-gold: #D4AF37; /* Золотий (Акцент) */
+    --color-white: #FFFFFF; /* Білий (Блок 4) */
 }
 
 /* 1. Адаптивність та Шрифти */
 html, body {
     height: 100%;
     width: 100%;
-    margin: 0 !important; /* ВИПРАВЛЕНО: Видаляємо зовнішній відступ браузера */
+    margin: 0 !important; /* ВИДАЛЕНО ЗОВНІШНЮ БІЛУ РАМКУ */
     padding: 0 !important;
 }
 
@@ -32,18 +33,21 @@ h1, h2, h3 {
     margin: 0;
 }
 
-/* 2. Контейнер та CSS Grid */
+/* 2. Контейнер та CSS Grid - 3 КОЛОНКИ (З ЛОГІКОЮ ПЕРЕКРИТТЯ) */
 .container {
     width: 100%;
     min-height: 100vh;
     margin: 0;
     border: none;
     display: grid;
+    /* 3 КОЛОНКИ: 1fr | 2fr | 1fr */
     grid-template-columns: 1fr 2fr 1fr;
+    /* 4 РЯДКИ: Header | Блок 3 | Блоки 4/5 | Блок 6 | Footer */
     grid-template-rows: auto auto 1fr auto;
+    /* ВИЗНАЧЕННЯ АРЕАЛІВ для перекриття Блоком 3 */
     grid-template-areas:
         "header header header"
-        "left-side top-center right-side"
+        "left-side top-span top-span" /* Блок 3 ПЕРЕКРИВАЄ Блок 5 */
         "left-side content right-side"
         "left-side bottom-center right-side"
         "footer footer footer";
@@ -87,49 +91,59 @@ h1, h2, h3 {
     background-color: var(--color-white);
 }
 
-/* 4. Прив'язка блоків Grid та ТОНКА КОРИГУВАННЯ МЕЖІВ */
+/* 4. Прив'язка блоків Grid - ЛОГІКА ПЕРЕКРИТТЯ */
 
 .block-1 {
     grid-area: header;
 }
 
-/* БЛОК 3: Обмеження + ВИДАЛЕННЯ НИЖНЬОЇ МЕЖІ */
+/* БЛОК 3: СПАНУВАННЯ ЧЕРЕЗ КОЛОНКИ 2 і 3 */
 .block-3 {
-    grid-area: top-center;
+    background-color: var(--color-cream);
+    grid-area: top-span;
+    grid-column: 2 / span 2; /* !!! РОЗШИРЕННЯ ДО КРАЮ - ВИКОНУЄТЬСЯ !!! */
     border-left: none;
     border-right: none;
-    border-bottom: none; /* УСУВАЄМО НАКЛАДАННЯ З БЛОКОМ 4 */
-}
-/* БЛОК 4: Обмеження */
-.block-4 {
-    grid-area: content;
-    border-left: none;
-    border-right: none;
-    border-top: none; /* УСУВАЄМО НАКЛАДАННЯ З БЛОКОМ 3 */
-    border-bottom: none;
-}
-/* БЛОК 6: Обмеження + ВИДАЛЕННЯ ВЕРХНЬОЇ МЕЖІ */
-.block-6 {
-    grid-area: bottom-center;
-    border-left: none;
-    border-right: none;
-    border-top: none; /* УСУВАЄМО НАКЛАДАННЯ З БЛОКОМ 4 */
     border-bottom: none;
 }
 
-/* БЛОКИ 2 та 5: БОКОВІ ПАНЕЛІ (ПОВНА ВИСОТА) */
-.block-2 {
-    grid-area: left-side;
-    grid-row: 2 / span 3;
-    border-right: none;
-}
-
+/* БЛОК 5: ПРАВА ПАНЕЛЬ (Починається ПІД БЛОКОМ 3) */
 .block-5 {
+    background-color: var(--color-taupe);
     grid-area: right-side;
-    grid-row: 2 / span 3;
+    grid-column: 3; /* Фіксуємо у 3-й колонці */
+    grid-row: 3 / span 2; /* СТАРТУЄ ПІД БЛОКОМ 3 І ЙДЕ ДО НИЗУ */
     border-left: 1px solid var(--color-brown);
     border-top: none;
     border-bottom: none;
+    border-right: none;
+}
+
+/* БЛОК 4: ОСНОВНИЙ КОНТЕНТ */
+.block-4 {
+    grid-area: content;
+    grid-row: 3;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-bottom: none;
+}
+
+/* БЛОК 6: Нижня центральна */
+.block-6 {
+    grid-area: bottom-center;
+    grid-row: 4;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-bottom: none;
+}
+
+/* БЛОК 2 (Навігація) */
+.block-2 {
+    background-color: var(--color-taupe);
+    grid-area: left-side;
+    grid-row: 2 / span 4;
     border-right: none;
 }
 
@@ -147,11 +161,10 @@ h1, h2, h3 {
 }
 
 .main-menu a {
-    text-decoration: none;
+    background: transparent;
     color: var(--color-brown);
     display: block;
     padding: 8px;
-    background: var(--color-white);
     border-bottom: 1px solid var(--color-brown);
     transition: background-color 0.3s;
 }
