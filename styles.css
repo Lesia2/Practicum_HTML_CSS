@@ -1,10 +1,9 @@
-/* styles.css - ФІНАЛЬНА ВЕРСІЯ: ВИКОНАННЯ ВИМОГИ ПЕРЕКРИТТЯ БЛОКУ 3 */
 
 * {
     box-sizing: border-box;
 }
 
-/* Визначаємо колірну палітру */
+/* Колірна палітра */
 :root {
     --color-cream: #F5F5DC; /* Кремовий (Блоки 3, 6) */
     --color-brown: #5D4037; /* Коричневий (Темний акцент, межі, текст) */
@@ -17,7 +16,7 @@
 html, body {
     height: 100%;
     width: 100%;
-    margin: 0 !important; /* ВИДАЛЕНО ЗОВНІШНЮ БІЛУ РАМКУ */
+    margin: 0 !important; 
     padding: 0 !important;
 }
 
@@ -33,21 +32,17 @@ h1, h2, h3 {
     margin: 0;
 }
 
-/* 2. Контейнер та CSS Grid - 3 КОЛОНКИ (З ЛОГІКОЮ ПЕРЕКРИТТЯ) */
 .container {
     width: 100%;
     min-height: 100vh;
     margin: 0;
     border: none;
     display: grid;
-    /* 3 КОЛОНКИ: 1fr | 2fr | 1fr */
     grid-template-columns: 1fr 2fr 1fr;
-    /* 4 РЯДКИ: Header | Блок 3 | Блоки 4/5 | Блок 6 | Footer */
     grid-template-rows: auto auto 1fr auto;
-    /* ВИЗНАЧЕННЯ АРЕАЛІВ для перекриття Блоком 3 */
     grid-template-areas:
         "header header header"
-        "left-side top-span top-span" /* Блок 3 ПЕРЕКРИВАЄ Блок 5 */
+        "left-side top-span top-span" 
         "left-side content right-side"
         "left-side bottom-center right-side"
         "footer footer footer";
@@ -91,7 +86,7 @@ h1, h2, h3 {
     background-color: var(--color-white);
 }
 
-/* 4. Прив'язка блоків Grid - ЛОГІКА ПЕРЕКРИТТЯ */
+
 
 .block-1 {
     grid-area: header;
@@ -104,7 +99,7 @@ h1, h2, h3 {
 .block-3 {
     background-color: var(--color-cream);
     grid-area: top-span;
-    grid-column: 2 / span 2; /* !!! РОЗШИРЕННЯ ДО КРАЮ - ВИКОНУЄТЬСЯ !!! */
+    grid-column: 2 / span 2; 
     border-left: none;
     border-right: none;
     border-bottom: none;
