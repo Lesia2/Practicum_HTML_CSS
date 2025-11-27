@@ -1,32 +1,45 @@
-/* styles.css */
+/* styles.css - Кондитерська PASTRIE - ЕЛЕГАНТНИЙ СТИЛЬ */
 
-/* 1. Адаптивність та скидання стандартних стилів */
+/* Визначаємо колірну палітру */
+:root {
+    --color-cream: #F5F5DC; /* Кремовий */
+    --color-brown: #5D4037; /* Коричневий (Темний акцент) */
+    --color-gold: #D4AF37; /* Золотий (Акцент) */
+    --color-white: #FFFFFF; /* Білий */
+    --color-black: #1A1A1A; /* Чорний */
+}
+
+/* 1. Адаптивність та Шрифти */
 html, body {
-    height: 100%; /* Забезпечує повну висоту вікна */
-    width: 100%; /* Забезпечує повну ширину вікна */
-    margin: 0; /* Прибирає стандартні зовнішні відступи */
+    height: 100%;
+    width: 100%;
+    margin: 0;
     padding: 0;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    font-family: 'Montserrat', sans-serif; /* Основний текст */
+    background-color: var(--color-white);
+    color: var(--color-brown);
+}
+
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif; /* Елегантні заголовки */
+    color: var(--color-brown);
+    margin: 0;
 }
 
 /* 2. Контейнер та CSS Grid */
 .container {
-    width: 100%; /* Адаптивна ширина */
-    min-height: 100vh; /* Мінімальна висота дорівнює висоті вікна */
+    width: 100%;
+    min-height: 100vh;
     margin: 0;
     box-shadow: none;
-    border: none;
-    /* Активація CSS Grid */
+    border: 5px solid var(--color-gold); /* Золота рамка */
+
     display: grid;
-    /* Пропорції стовпців: 1 частина (Блок 2) | 2 частини (Блоки 3, 4, 6) | 1 частина (Блок 5) */
     grid-template-columns: 1fr 2fr 1fr;
-    /* Пропорції рядків: Верхні та нижні за контентом, центральний (4) - займає решту простору */
     grid-template-rows: auto auto 1fr auto;
-    /* Визначення областей макета */
     grid-template-areas:
         "header header header"
         "left-side top-center right-side"
@@ -37,35 +50,45 @@ body {
 
 /* 3. Стилі та кольори блоків */
 .block {
-    padding: 10px;
-    border: 1px solid #ccc;
+    padding: 15px;
+    border: 1px solid rgba(212, 175, 55, 0.4); /* Напівпрозорий золотий поділ */
     box-sizing: border-box;
-    overflow: auto; /* Запобігає поломці макета при переповненні контентом */
+    overflow: auto;
 }
 
-/* Кольори відповідно до Варіанта 5: */
+/* БЛОКИ 1 та 7 */
 .block-1, .block-7 {
-    background-color: #c0d9e7;
+    background-color: var(--color-brown);
+    color: var(--color-white);
 }
-/* Блакитний */
-.block-2, .block-5 {
-    background-color: #ffdab9;
-}
-/* Світло-помаранчевий */
-.block-3, .block-6 {
-    background-color: #e0f8e0;
-}
-/* Світло-зелений */
-.block-4 {
-    background-color: #ffffff;
-}
-/* Білий */
 
-/* 4. Прив'язка блоків до областей Grid */
+    .block-1 h1, .block-7 h2 {
+        color: var(--color-gold); /* Золоті заголовки на коричневому тлі */
+    }
+
+    .block-1 h1 {
+        text-align: left;
+    }
+
+    .block-7 h2 {
+        text-align: right;
+    }
+
+/* БЛОКИ 2, 3, 5, 6 */
+.block-2, .block-5, .block-3, .block-6 {
+    background-color: var(--color-cream);
+}
+
+/* БЛОК 4 */
+.block-4 {
+    background-color: var(--color-white);
+}
+
+/* 4. Прив'язка блоків Grid */
 .block-1 {
     grid-area: header;
 }
-/* Блоки 2 і 5 вертикально охоплюють 3, 4, 6 */
+
 .block-2 {
     grid-area: left-side;
     grid-row: 2 / span 4;
@@ -92,34 +115,30 @@ body {
     grid-area: footer;
 }
 
-/* 5. Додаткові стилі */
-h1 {
-    font-size: 1.5em;
-    text-align: left;
-    margin: 0;
-}
-
-h2 {
-    font-size: 1.2em;
-    text-align: right;
-    margin: 0;
-}
-
+/* 5. Стилі для меню */
 .main-menu ul {
     list-style-type: none;
     padding: 0;
 }
 
+.main-menu p {
+    font-size: 0.9em;
+    color: var(--color-brown);
+    text-transform: uppercase;
+    padding: 5px 0;
+}
+
 .main-menu a {
     text-decoration: none;
-    color: #333;
+    color: var(--color-brown);
     display: block;
-    padding: 5px;
-    background: #f0f0f0;
-    margin-bottom: 2px;
+    padding: 8px;
+    background: var(--color-white);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.5);
+    transition: background-color 0.3s;
 }
 
     .main-menu a:hover {
-        background: #ccc;
+        background-color: var(--color-gold);
+        color: var(--color-black);
     }
-
