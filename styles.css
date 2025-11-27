@@ -1,18 +1,17 @@
-/* styles.css - Кондитерська PASTRIE - ФІНАЛЬНИЙ ДИЗАЙН ЗА ВАРІАНТОМ 5 (3 КОЛОНКИ) */
+/* styles.css - ФІНАЛЬНИЙ ДИЗАЙН (КОРЕКТНА СТРУКТУРА ЗА ВИМОГАМИ КОРИСТУВАЧА) */
 
-/* Глобальне налаштування для усунення скролбара */
+/* Глобальне налаштування */
 * {
     box-sizing: border-box;
 }
 
 /* Визначаємо колірну палітру */
 :root {
-    --color-cream: #F5F5DC; /* Кремовий (Основний фон) */
+    --color-cream: #F5F5DC; /* Кремовий */
     --color-brown: #5D4037; /* Коричневий (Темний акцент, межі, текст) */
-    --color-taupe: #BFA89E; /* Сіро-коричневий (Новий колір для Блоків 2 і 5) */
+    --color-taupe: #BFA89E; /* Сіро-коричневий (Блоки 2 і 5) */
     --color-gold: #D4AF37; /* Золотий (Акцент) */
-    --color-white: #FFFFFF; /* Білий */
-    --color-black: #1A1A1A; /* Чорний */
+    --color-white: #FFFFFF; /* Білий (Блок 4) */
 }
 
 /* 1. Адаптивність та Шрифти */
@@ -35,7 +34,7 @@ h1, h2, h3 {
     margin: 0;
 }
 
-/* 2. Контейнер та CSS Grid - 3 КОЛОНКИ */
+/* 2. Контейнер та CSS Grid - СКЛАДНА СТРУКТУРА */
 .container {
     width: 100%;
     min-height: 100vh;
@@ -44,25 +43,25 @@ h1, h2, h3 {
     display: grid;
     /* 3 КОЛОНКИ: 1fr (Блок 2) | 2fr (Блок 4) | 1fr (Блок 5) */
     grid-template-columns: 1fr 2fr 1fr;
+    /* 4 РЯДКИ: Header | Top-mid (Блок 3) | Content/Sidebar (Блоки 4, 5, 6) | Footer */
     grid-template-rows: auto auto 1fr auto;
-    /* ПОВЕРНУТО ВСІ 7 БЛОКІВ */
+    /* ВИЗНАЧЕННЯ АРЕАЛІВ, що відповідає вимогам: */
     grid-template-areas:
         "header header header"
-        "left-side top-center right-side"
-        "left-side content right-side"
-        "left-side bottom-center right-side"
+        "left-side top-center top-center" /* Рядок 2: Блок 3 СПАНУЄ НАД БЛОКОМ 5 */
+        "left-side content right-side-content" /* Рядок 3: Блок 4 та Блок 5 тут */
+        "left-side bottom-center right-side-content" /* Рядок 4: Блок 6 та Блок 5 тут */
         "footer footer footer";
 }
 
 /* 3. Стилі та кольори блоків */
 .block {
     padding: 15px;
-    /* КОРИЧНЕВА ВНУТРІШНЯ МЕЖА */
     border: 1px solid var(--color-brown);
     overflow: auto;
 }
 
-/* БЛОКИ 1 та 7 - Корегуємо крайні межі та колір */
+/* Блоки 1 та 7 (Header/Footer) */
 .block-1, .block-7 {
     background-color: var(--color-brown);
     color: var(--color-white);
@@ -70,76 +69,95 @@ h1, h2, h3 {
     border-right: none;
 }
 
-    .block-1 h1 {
+    .block-1 h1, .block-7 h2 {
         color: var(--color-gold);
-        text-align: left;
     }
 
-    .block-7 h2 {
-        color: var(--color-gold);
-        text-align: right;
-    }
-
-/* БЛОКИ 2 та 5 (Навігація та Права панель) - НОВИЙ КОЛІР */
-.block-2, .block-5 {
-    background-color: var(--color-taupe);
-    color: var(--color-brown); /* Текст залишається коричневим */
-}
-
-/* БЛОКИ 3 та 6 */
-.block-3, .block-6 {
-    background-color: var(--color-cream);
-}
-/* БЛОК 4 */
-.block-4 {
-    background-color: var(--color-white);
-}
-
-/* 4. Прив'язка блоків Grid - ВІДНОВЛЕНО 3 КОЛОНКИ + УМОВНЕ РОЗШИРЕННЯ */
 .block-1 {
     grid-area: header;
-}
-
-.block-4 {
-    grid-area: content;
-    border-top: none; /* Залишається лише поділ з Блоками 2 та 5 */
-    border-bottom: none;
-    border-left: none;
-    border-right: none;
 }
 
 .block-7 {
     grid-area: footer;
 }
 
-/* БЛОК 3: РОЗШИРЕННЯ (СПАНУВАННЯ) до правого краю */
+    .block-7 h2 {
+        text-align: right;
+    }
+
+/* БЛОК 2 (Ліва навігація) - ПОВНА ВИСОТА */
+.block-2 {
+    background-color: var(--color-taupe);
+    grid-area: left-side;
+    grid-row: 2 / span 3; /* Охоплює рядки 2, 3, 4 */
+    border-right: none;
+}
+
+/* БЛОК 3 (Верхній Центральний) - РОЗШИРЕННЯ ДО КРАЮ */
 .block-3 {
+    background-color: var(--color-cream);
     grid-area: top-center;
+    grid-column: 2 / span 2; /* !!! СПАНУЄ ЧЕРЕЗ КОЛОНКИ 2 ТА 3 (ДО КРАЮ ВІКНА) !!! */
     border-left: none;
     border-right: none;
     border-bottom: none;
 }
 
-/* БЛОК 6: ОБМЕЖЕННЯ (НЕ РОЗШИРЕННЯ) до Блоку 5 */
-.block-6 {
-    grid-area: bottom-center;
-    /* Тут grid-column НЕ вказується, тому він залишається в центральній колонці */
-    border-left: none;
-    border-right: none;
-}
-
-/* БЛОК 2 (ліва навігація) і БЛОК 5 (права панель) - Розтягування по вертикалі */
-.block-2 {
-    grid-area: left-side;
-    grid-row: 2 / span 4; /* Розтягується на 4 рядки */
-    border-right: none;
-}
-
+/* БЛОК 5 (Права панель) - СТАРТ ПІД БЛОКОМ 3 ДО БЛОКУ 7 */
 .block-5 {
-    grid-area: right-side;
-    grid-row: 2 / span 4;
-    border-left: 1px solid var(--color-brown);
+    background-color: var(--color-taupe);
+    grid-area: right-side-content;
+    grid-column: 3; /* Фіксуємо у 3-й колонці */
+    grid-row: 3 / span 2; /* !!! СТАРТУЄ ПІД БЛОКОМ 3 І ЙДЕ ДО БЛОКУ 7 !!! */
+    border-left: none;
     border-top: none;
     border-bottom: none;
     border-right: none;
 }
+
+/* БЛОК 4 (Основний контент) */
+.block-4 {
+    background-color: var(--color-white);
+    grid-area: content;
+    grid-row: 3; /* Залишається в рядку 3 */
+    border: none;
+}
+
+/* БЛОК 6 (Нижній Центральний) */
+.block-6 {
+    background-color: var(--color-cream);
+    grid-area: bottom-center;
+    grid-row: 4; /* Залишається в рядку 4 */
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-bottom: none;
+}
+
+/* 5. Стилі для меню */
+.main-menu ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.main-menu p {
+    font-size: 0.9em;
+    color: var(--color-brown);
+    text-transform: uppercase;
+    padding: 5px 0;
+}
+
+.main-menu a {
+    text-decoration: none;
+    color: var(--color-brown);
+    display: block;
+    padding: 8px;
+    background: var(--color-white);
+    border-bottom: 1px solid var(--color-brown);
+    transition: background-color 0.3s;
+}
+
+    .main-menu a:hover {
+        background-color: var(--color-gold);
+        color: var(--color-black);
+    }
