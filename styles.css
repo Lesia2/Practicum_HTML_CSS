@@ -1,4 +1,4 @@
-/* styles.css - Кондитерська PASTRIE - ЕЛЕГАНТНИЙ СТИЛЬ */
+/* styles.css - Кондитерська PASTRIE - ЕЛЕГАНТНИЙ СТИЛЬ (Без заголовка у Блоці 1) */
 
 /* Визначаємо колірну палітру */
 :root {
@@ -62,15 +62,9 @@ h1, h2, h3 {
     color: var(--color-white);
 }
 
-    .block-1 h1, .block-7 h2 {
-        color: var(--color-gold); /* Золоті заголовки на коричневому тлі */
-    }
-
-    .block-1 h1 {
-        text-align: left;
-    }
-
+    /* Стилі для h2 (Блок 7) залишаються */
     .block-7 h2 {
+        color: var(--color-gold); /* Золотий колір для гасла */
         text-align: right;
     }
 
