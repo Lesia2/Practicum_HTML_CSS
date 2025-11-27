@@ -115,7 +115,6 @@ h1, h2, h3 {
 /* БЛОК 3: РОЗШИРЕННЯ (СПАНУВАННЯ) до правого краю */
 .block-3 {
     grid-area: top-center;
-    grid-column: 2 / span 2; /* Починається з 2-ї колонки і охоплює 2 колонки (Центр + Права) */
     border-left: none;
     border-right: none;
     border-bottom: none;
@@ -138,6 +137,9 @@ h1, h2, h3 {
 
 .block-5 {
     grid-area: right-side;
-    grid-row: 2 / span 4; /* Розтягується на 4 рядки */
-    border-left: none;
+    grid-row: 2 / span 4;
+    border-left: 1px solid var(--color-brown);
+    border-top: none;
+    border-bottom: none;
+    border-right: none;
 }
