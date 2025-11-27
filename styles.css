@@ -96,6 +96,9 @@ h1, h2, h3 {
 .block-1 {
     grid-area: header;
 }
+.block-7 {
+    grid-area: footer;
+}
 
 /* акнй 3: яоюмсбюммъ вепег йнкнмйх 2 Ё 3 */
 .block-3 {
