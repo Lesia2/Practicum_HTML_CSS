@@ -1,47 +1,49 @@
 /* styles.css */
+
+/* 1. Адаптивність та скидання стандартних стилів */
+html, body {
+    height: 100%; /* Забезпечує повну висоту вікна */
+    width: 100%; /* Забезпечує повну ширину вікна */
+    margin: 0; /* Прибирає стандартні зовнішні відступи */
+    padding: 0;
+}
+
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
-    background-color: #f4f4f4; /* Сірий фон для сторінки */
+    background-color: #f4f4f4;
 }
 
-/* Основний контейнер, який тримає весь макет */
+/* 2. Контейнер та CSS Grid */
 .container {
-    width: 800px; /* Фіксована ширина для демонстрації пропорцій */
-    height: 600px; /* Фіксована висота для демонстрації */
-    margin: 0 auto; /* Центрування на сторінці */
-    border: 3px solid #333;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+    width: 100%; /* Адаптивна ширина */
+    min-height: 100vh; /* Мінімальна висота дорівнює висоті вікна */
+    margin: 0;
+    box-shadow: none;
+    border: none;
     /* Активація CSS Grid */
     display: grid;
-    /* Визначаємо 3 стовпці: 25% (2) | 50% (3, 4, 6) | 25% (5) */
-    /* Використовуємо 'fr' для пропорцій: 1fr | 2fr | 1fr */
+    /* Пропорції стовпців: 1 частина (Блок 2) | 2 частини (Блоки 3, 4, 6) | 1 частина (Блок 5) */
     grid-template-columns: 1fr 2fr 1fr;
-    /* Визначаємо 4 рядки:
-       - 1: За контентом (auto)
-       - 3: За контентом (auto)
-       - 4: Займає простір, що залишився (1fr)
-       - 6/7: За контентом (auto) */
+    /* Пропорції рядків: Верхні та нижні за контентом, центральний (4) - займає решту простору */
     grid-template-rows: auto auto 1fr auto;
-    /* Визначаємо імена областей для зручного розміщення блоків */
+    /* Визначення областей макета */
     grid-template-areas:
-        "header header header" /* Блок 1 займає весь верхній рядок */
-        "left-side top-center right-side" /* Блоки 2, 3, 5 */
-        "left-side content right-side" /* Блоки 2, 4, 5 */
-        "left-side bottom-center right-side" /* Блоки 2, 6, 5 */
-        "footer footer footer"; /* Блок 7 займає весь нижній рядок */
+        "header header header"
+        "left-side top-center right-side"
+        "left-side content right-side"
+        "left-side bottom-center right-side"
+        "footer footer footer";
 }
 
-/* Загальні стилі для всіх блоків */
+/* 3. Стилі та кольори блоків */
 .block {
     padding: 10px;
-    border: 1px solid #ccc; /* Тонка межа між блоками */
-    box-sizing: border-box; /* Запобігає збільшенню розміру блоку через padding */
-    overflow: auto; /* Додає смугу прокрутки, якщо контенту забагато (Завдання 7) */
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    overflow: auto; /* Запобігає поломці макета при переповненні контентом */
 }
 
-/* Кольори відповідно до Варіанта 5 */
+/* Кольори відповідно до Варіанта 5: */
 .block-1, .block-7 {
     background-color: #c0d9e7;
 }
@@ -49,7 +51,7 @@ body {
 .block-2, .block-5 {
     background-color: #ffdab9;
 }
-/* Світло-помаранчевий (персиковий) */
+/* Світло-помаранчевий */
 .block-3, .block-6 {
     background-color: #e0f8e0;
 }
@@ -59,14 +61,13 @@ body {
 }
 /* Білий */
 
-/* Прив'язка блоків до областей Grid */
+/* 4. Прив'язка блоків до областей Grid */
 .block-1 {
     grid-area: header;
 }
-
+/* Блоки 2 і 5 вертикально охоплюють 3, 4, 6 */
 .block-2 {
     grid-area: left-side;
-    /* Блок 2 охоплює 3, 4, 6 по вертикалі */
     grid-row: 2 / span 4;
 }
 
@@ -80,7 +81,6 @@ body {
 
 .block-5 {
     grid-area: right-side;
-    /* Блок 5 охоплює 3, 4, 6 по вертикалі */
     grid-row: 2 / span 4;
 }
 
@@ -92,7 +92,7 @@ body {
     grid-area: footer;
 }
 
-/* Стилі для заголовків X та Y */
+/* 5. Додаткові стилі */
 h1 {
     font-size: 1.5em;
     text-align: left;
@@ -105,7 +105,6 @@ h2 {
     margin: 0;
 }
 
-/* Стилі для меню */
 .main-menu ul {
     list-style-type: none;
     padding: 0;
@@ -123,3 +122,4 @@ h2 {
     .main-menu a:hover {
         background: #ccc;
     }
+
