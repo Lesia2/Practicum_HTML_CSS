@@ -1,4 +1,4 @@
-/* styles.css - Кондитерська PASTRIE - ФІНАЛЬНИЙ ДИЗАЙН ЗА МАКЕТОМ */
+/* styles.css - Кондитерська PASTRIE - ФІНАЛЬНИЙ ДИЗАЙН З МЕЖАМИ */
 
 /* Глобальне налаштування для усунення скролбара */
 * {
@@ -34,29 +34,30 @@ h1, h2, h3 {
     margin: 0;
 }
 
-/* 2. Контейнер та CSS Grid - ВИПРАВЛЕНО grid-template-areas ЗА МАКЕТОМ */
+/* 2. Контейнер та CSS Grid - 2 КОЛОНКИ */
 .container {
     width: 100%;
     min-height: 100vh;
     margin: 0;
-    box-shadow: none;
-    border: none; /* ЗОЛОТА Окантовка ВИДАЛЕНА */
-
+    border: none;
     display: grid;
-    grid-template-columns: 1fr 2fr; /* Тепер тільки 2 колонки: ліва панель (1fr) та основний контент (2fr) */
+    /* 2 КОЛОНКИ: 1fr (Навігація) | 2fr (Контент + Правий бік) */
+    grid-template-columns: 1fr 2fr;
     grid-template-rows: auto auto 1fr auto;
+    /* ВИПРАВЛЕНО: Блоки 3 і 6 займають всю ширину, крім Блоку 2 */
     grid-template-areas:
-        "header header" /* Блок 1 займає всю ширину */
-        "left-side main-top" /* Блок 2 | Блок 3 (новий main-top) */
-        "left-side content" /* Блок 2 | Блок 4 */
-        "left-side main-bottom" /* Блок 2 | Блок 6 (новий main-bottom) */
-        "footer footer"; /* Блок 7 займає всю ширину */
+        "header header"
+        "left-side main-top"
+        "left-side content"
+        "left-side main-bottom"
+        "footer footer";
 }
 
 /* 3. Стилі та кольори блоків */
 .block {
     padding: 15px;
-    border: none; /* ВНУТРІШНІ ЛІНІЇ ПОДІЛУ ВИДАЛЕНІ */
+    /* НОВА КОРИЧНЕВА ВНУТРІШНЯ МЕЖА */
+    border: 1px solid var(--color-brown);
     overflow: auto;
 }
 
@@ -64,44 +65,49 @@ h1, h2, h3 {
 .block-1, .block-7 {
     background-color: var(--color-brown);
     color: var(--color-white);
+    /* Видаляємо крайні внутрішні межі */
+    border-left: none;
+    border-right: none;
 }
 
-    /* Стилі для h1 (Блок 1) */
+    /* Стилі для h1 (Блок 1) та h2 (Блок 7) */
     .block-1 h1 {
-        color: var(--color-gold); /* Золотий колір для назви */
+        color: var(--color-gold);
         text-align: left;
     }
 
-    /* Стилі для h2 (Блок 7) */
     .block-7 h2 {
         color: var(--color-gold);
         text-align: right;
     }
 
-/* БЛОКИ 2, 3 (main-top), 6 (main-bottom) */
-.block-2, .block-3, .block-6 { /* Блок 5 видалено, Блок 3 та 6 тепер замінюють праву частину */
+/* БЛОКИ 2, 3, 6 - Корегуємо межі */
+.block-2 {
     background-color: var(--color-cream);
+    grid-row: 2 / span 4;
+    border-right: none; /* Усуваємо подвійну лінію між 2 та 3/4/6 */
+}
+
+.block-3, .block-6 {
+    background-color: var(--color-cream);
+    border-left: none; /* Усуваємо подвійну лінію між 2 та 3/6 */
 }
 
 /* БЛОК 4 */
 .block-4 {
     background-color: var(--color-white);
+    border-left: none; /* Усуваємо подвійну лінію між 2 та 4 */
 }
 
-/* 4. Прив'язка блоків Grid - ВИПРАВЛЕНО ЗА МАКЕТОМ */
+/* 4. Прив'язка блоків Grid */
 .block-1 {
     grid-area: header;
 }
 
-.block-2 {
-    grid-area: left-side;
-    grid-row: 2 / span 4;
-}
-/* Блок 2 все ще займає всю ліву висоту */
 .block-3 {
     grid-area: main-top;
 }
-/* Блок 3 тепер займає центральну та праву частини */
+
 .block-4 {
     grid-area: content;
 }
@@ -109,13 +115,10 @@ h1, h2, h3 {
 .block-6 {
     grid-area: main-bottom;
 }
-/* Блок 6 тепер займає центральну та праву частини */
+
 .block-7 {
     grid-area: footer;
 }
-
-/* БЛОК 5 - ТЕПЕР ВІДСУТНІЙ В МАКЕТІ, ЙОГО ВМІСТ ПЕРЕНЕСЕНО АБО ВИДАЛЕНО */
-/* .block-5 { display: none; } */
 
 
 /* 5. Стилі для меню */
